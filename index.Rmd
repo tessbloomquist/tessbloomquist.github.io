@@ -17,3 +17,5 @@ You can learn about me [here](about-me.html)
 
 So, to link to my favorite tool for data science, I’d use [this](https://google.com)
 
+# this is a screenshot
+<img src="images/image.png" style="width:75%">
