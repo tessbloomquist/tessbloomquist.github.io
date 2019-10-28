@@ -21,3 +21,5 @@ So, to link to my favorite tool for data science, I’d use [this](https://googl
 
 
 delete theme, create text file, copy/paste, create _site.yml file so the common theme can be used across all files
+
+bootswatch is the website where themes are outlines
