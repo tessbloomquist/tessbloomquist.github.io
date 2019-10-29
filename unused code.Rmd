@@ -1,0 +1,102 @@
+---
+title: "unused code"
+author: "Tess"
+date: "10/28/2019"
+output: html_document
+---
+
+```{r}
+#comparison of pepsi to coke
+
+instacart_bev_2 = 
+  instacart_bev %>%
+  filter(product_name == "Pepsi" | product_name == "Diet Pepsi" | product_name == "Diet Pepsi Wild Cherry" | product_name == "Diet Pepsi Slim Cans" | product_name == "Diet Pepsi Soda" | product_name == "Diet Pepsi Pack" | product_name == "Caffeine Free Coke Zero"| product_name == "Caffeine Free Diet Coke" | product_name == "Caffeine Free Mini Bottles" | product_name == "Caffeine Free Diet Coke Soda" | product_name == "Cherry Coke" | product_name == "Cherry Coke Soda" | product_name == "Classic coke" | product_name == "Coke" | product_name == "Coke Classic" | product_name == "Coke Classic Soda" | product_name == "Coke de Mexico Glass" | product_name == "Coke Life" | product_name == "Coke Sweetened Splenda" | product_name == "Coke Zero" | product_name == "Coke Zero Diet Soda" | product_name == "Diet Cherry Coke" | product_name == "Diet Coke" | product_name == "Diet Coke Caffeine Free Soda" | product_name == "Diet Coke Soda" | product_name == "Lime Diet Coke" | product_name == "	Vanilla Coke" | product_name == "Vanilla Coke Zero" | product_name == "Zero Coke Soda Mini Bottles") %>%
+mutate(brand = if_else(product_name == "Caffeine Free Coke Zero" | product_name == "Caffeine Free Diet Coke" | product_name == "Caffeine Free Mini Bottles" | product_name == "Caffeine Free Diet Coke Soda" | product_name == "Cherry Coke" | product_name == "Cherry Coke Soda" | product_name == "Classic coke" | product_name == "Coke" | product_name == "Coke Classic" | product_name == "Coke Classic Soda" | product_name == "Coke de Mexico Glass" | product_name == "Coke Life" | product_name == "Coke Sweetened Splenda" | product_name == "Coke Zero" | product_name == "Coke Zero Diet Soda" | product_name == "Diet Cherry Coke" | product_name == "Diet Coke" | product_name == "Diet Coke Caffeine Free Soda" | product_name == "Diet Coke Soda" | product_name == "Lime Diet Coke" | product_name == "	Vanilla Coke" | product_name == "Vanilla Coke Zero" | product_name == "Zero Coke Soda Mini Bottles", "Coke", "Pepsi"))
+                          
+instacart_bev_2 %>%
+  group_by(order_dow, order_hour_of_day, brand) %>%
+  summarise(n = n()) %>%
+  plot_ly(x = ~order_hour_of_day, y = ~n, color = ~brand, type = "scatter")
+                          
+          
+```
+
+
+
+```{r}
+library(p8105.datasets)
+data("rest_inspec")
+
+```
+
+```{r}
+#plot of critical violations based on boro
+
+rest_inspec %>%
+  group_by(boro, critical_flag) %>%
+  summarise(n = n()) %>%
+ filter(boro == "BRONX" | boro == "BROOKLYN" | boro == "MANHATTAN" | boro == "QUEENS" | boro == "STATEN ISLAND", 
+        critical_flag == "Critical" | critical_flag == "Not Critical") %>%
+  plot_ly(x = ~boro, y = ~n, type = "bar", mode = "line",
+          alpha = 0.5, 
+          color = ~critical_flag)
+```
+
+```{r}
+#critical violations in Italian, American, and Indian food
+rest_inspec %>% 
+  group_by(boro, critical_flag, cuisine_description) %>% 
+  summarize(n = n()) %>% 
+  filter(critical_flag == "Critical", 
+         cuisine_description == "Italian" | cuisine_description == "Indian" | cuisine_description == "American") %>% 
+  plot_ly(x = ~n, y = ~boro, type = "scatter", mode = "line",
+          alpha = 0.5,
+          color = ~cuisine_description)
+```
+
+```{r}
+rest_inspec %>% 
+  group_by(boro, critical_flag, cuisine_description) %>% 
+  summarize(n = n()) %>%
+  filter(boro == "MANHATTAN", 
+         cuisine_description == "Italian" | cuisine_description == "Indian" | cuisine_description == "American") %>% 
+  plot_ly(x = ~score, y = ~n, type = "scatter", mode = "line",
+          alpha = 0.5,
+          color = ~cuisine_description)
+```
+
+
+```{r}
+# number of A B C D E grades
+rest_inspec %>% 
+  group_by(boro, grade) %>% 
+  summarize(n = n()) %>% 
+  mutate(grade = as.factor(grade)) %>% 
+  plot_ly(x = ~grade, y = ~n, color = ~boro,
+          type = "bar",
+          colors = "Set2")
+```
+
+```{r}
+rest_inspec %>% 
+   filter(boro == "STATEN ISLAND") %>%
+  group_by(cuisine_description, grade) %>% 
+  summarize(n = n())%>%
+  plot_ly(x = ~cuisine_description, y = ~n, color = ~grade,
+          type = "scatter",
+          colors = "Set2")
+```
+
+%>%
+  layout(xaxis = "Day of the week", yaxis = "Number of Orders")
+  
+  labs(
+    title = "Pepsi Product Purchases by Day of the Week", 
+    x = "Day of the week", 
+    y = "Number of Orders"
+  )
+
+   ggplot(aes(x = order_dow, color = product_name)) +
+  geom_histogram()
+
+  mutate(order_hour_of_day = if_else(order_hour_of_day = NA, 0, order_hour_of_day) %>%
