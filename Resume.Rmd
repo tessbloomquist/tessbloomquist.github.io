@@ -1,9 +1,5 @@
 ---
 title: "Resume"
-author: "Tess"
-date: "10/27/2019"
-output: html_document
 ---
 
-# Resume
-![] (files/Updated Resume_2019.pdf)
+<img src="./images/Resume.jpg" style= "width:100%">
