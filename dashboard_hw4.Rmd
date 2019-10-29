@@ -42,7 +42,6 @@ instacart_bev %>%
   plot_ly(x = ~order_hour_of_day, y = ~n, color = ~diet, 
           type = "scatter")
 
-
 ```
 
 Column {data-width=350}

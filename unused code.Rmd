@@ -100,3 +100,11 @@ rest_inspec %>%
   geom_histogram()
 
   mutate(order_hour_of_day = if_else(order_hour_of_day = NA, 0, order_hour_of_day) %>%
+  
+  instacart_bev %>%
+  group_by(aisle, reordered) %>%
+  summarise(n = n()) %>%
+  filter(aisle == "tea" | aisle == "coffee") %>%
+  plot_ly(x = ~reordered, y = ~n,
+          color = ~aisle,
+          type = "bar") 
