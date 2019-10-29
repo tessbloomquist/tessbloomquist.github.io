@@ -2,7 +2,9 @@
 title: "data"
 author: "Tess"
 date: "10/27/2019"
-output: html_document
+output: flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
 ---
 
 ```{r setup, include=FALSE}
@@ -32,7 +34,7 @@ instacart_bev =
 
 create a flexdashboard using plotly
 
-```{r line graph}
+```{r scatter graph}
 #plot of diet pepsi vs normal pepsi by day of the week
 
 instacart_bev %>%
@@ -41,8 +43,7 @@ instacart_bev %>%
   group_by(diet, order_hour_of_day) %>%
   summarise(n = n()) %>%
   plot_ly(x = ~order_hour_of_day, y = ~n, color = ~diet, 
-          type = "scatter", 
-          mode = "line")
+          type = "scatter")
 
 
 ```
@@ -59,7 +60,7 @@ instacart_bev %>%
 ```
 
 
-```{r}
+```{r line graph}
 #beverage purchase per day
 
 instacart_bev %>%
@@ -68,15 +69,8 @@ instacart_bev %>%
   filter(aisle == "tea" | aisle == "coffee") %>%
   plot_ly(x = ~order_hour_of_day, y = ~n,
           color = ~aisle,
-          type = "scatter", mode = "line") 
-
-instacart_bev %>%
-  group_by(aisle, reordered) %>%
-  summarise(n = n()) %>%
-  filter(aisle == "tea" | aisle == "coffee") %>%
-  plot_ly(x = ~reordered, y = ~n,
-          color = ~aisle,
-          type = "bar") 
+          type = "scatter", 
+          mode = "line") 
 
 ```
 

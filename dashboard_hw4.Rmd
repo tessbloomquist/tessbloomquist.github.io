@@ -1,5 +1,5 @@
 ---
-title: "Untitled"
+title: "Grocery Data"
 output: 
   flexdashboard::flex_dashboard:
     orientation: columns
@@ -8,14 +8,40 @@ output:
 
 ```{r setup, include=FALSE}
 library(flexdashboard)
+library(tidyverse)
+library(ggplot2)
+library(ggridges)
+library(readxl)
+library(patchwork)
+library(viridis)
+library(plotly)
+library(p8105.datasets)
+
+data("instacart")
+
+
+instacart_bev =
+  instacart %>%
+  filter(department == "beverages")
 ```
+
 
 Column {data-width=650}
 -----------------------------------------------------------------------
 
 ### Chart A
 
-```{r}
+```{r scatter graph}
+#plot of diet pepsi vs normal pepsi by day of the week
+
+instacart_bev %>%
+  filter(product_name == "Pepsi" | product_name == "Diet Pepsi" | product_name == "Diet Pepsi Wild Cherry" | product_name == "Diet Pepsi Slim Cans" | product_name == "Diet Pepsi Soda" | product_name == "Diet Pepsi Pack") %>%
+  mutate(diet = if_else(product_name == "Pepsi", "Pepsi", "Diet Pepsi")) %>%
+  group_by(diet, order_hour_of_day) %>%
+  summarise(n = n()) %>%
+  plot_ly(x = ~order_hour_of_day, y = ~n, color = ~diet, 
+          type = "scatter")
+
 
 ```
 
@@ -24,13 +50,30 @@ Column {data-width=350}
 
 ### Chart B
 
-```{r}
+```{r bar graph}
+#beverage purchase per day
+
+instacart_bev %>%
+  group_by(order_hour_of_day) %>%
+  summarise(n = n()) %>%
+  plot_ly(x = ~order_hour_of_day, y = ~n,
+          type = "bar") 
 
 ```
 
 ### Chart C
 
-```{r}
+```{r line graph}
+#beverage purchase per day
+
+instacart_bev %>%
+  group_by(aisle, order_hour_of_day) %>%
+  summarise(n = n()) %>%
+  filter(aisle == "tea" | aisle == "coffee") %>%
+  plot_ly(x = ~order_hour_of_day, y = ~n,
+          color = ~aisle,
+          type = "scatter", 
+          mode = "line") 
 
 ```
 
