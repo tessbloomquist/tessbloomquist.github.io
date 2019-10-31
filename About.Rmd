@@ -6,7 +6,7 @@ output:
     toc_float: true
 ---
 
-My name is Tess Bloomquist. I grew up in Branford CT and moved to NYC after graduating from Trinity College in 2016 with a BS in Neuroscience. Currently I work in Andrea Baccarelli's lab at Columbia Mailman School of Public Health as a Project Coordinator in the Laboratory of Precision Environmental Biosciences. 
+My name is Tess Bloomquist. I grew up in Branford CT and moved to NYC after graduating from Trinity College in 2016 with a BS in Neuroscience. Currently I work in Andrea Baccarelli's lab at Columbia Mailman School of Public Health as a Project Coordinator in the [Laboratory of Precision Environmental Biosciences](https://www.mailman.columbia.edu/research/laboratory-precision-environmental-health). 
 
 <img src="./images/Tess.jpg" style="width:75%">
 

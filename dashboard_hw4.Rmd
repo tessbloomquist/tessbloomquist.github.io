@@ -1,5 +1,5 @@
 ---
-title: "Grocery Data"
+title: "2017 Online Grocery Data"
 output: 
   flexdashboard::flex_dashboard:
     orientation: columns
@@ -9,16 +9,13 @@ output:
 ```{r setup, include=FALSE}
 library(flexdashboard)
 library(tidyverse)
-library(ggplot2)
-library(ggridges)
-library(readxl)
-library(patchwork)
 library(viridis)
 library(plotly)
 library(p8105.datasets)
 
 data("instacart")
 
+set.seed(1)
 
 instacart_bev =
   instacart %>%

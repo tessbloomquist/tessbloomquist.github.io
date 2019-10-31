@@ -8,11 +8,11 @@ navbar:
     - text: "Resume"
       href: resume.html
     - text: "2017 Online Grocery Data"
-      href: dashboard_hw4.Rmd
+      href: dashboard_hw4.html
     - icon: fa-envelope fa-lg
       href: mailto:<tb2715@cumc.columbia.edu>
     - icon: fa-github fa-lg
       href: http://github.com/tessbloomquist
 output:
   html_document:
-    theme: cerulean
+    theme: cerulean 
