@@ -108,3 +108,25 @@ rest_inspec %>%
   plot_ly(x = ~reordered, y = ~n,
           color = ~aisle,
           type = "bar") 
+          
+          
+```{r}
+instacart_bev %>%
+  mutate(cold = if_else(aisle_id == 31, "fridge", "shelf")) %>%
+  group_by(cold, order_dow) %>%
+  summarise(n = n()) %>%
+  mutate(prop = n/sum(n))
+  plot_ly(x = ~order_dow, y = ~n,
+          color = ~cold,
+          type = "scatter") 
+  
+instacart_bev %>%
+  mutate(cold = if_else(aisle_id == 31, "fridge", "shelf")) %>%
+  group_by(cold) %>%
+  plot_ly(x = ~order_dow, y = ~days_since_prior_order,
+          color = ~cold,
+          type = "box") 
+  
+  
+
+```
